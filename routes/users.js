@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/practic")
+// Use environment variable for MongoDB connection or fallback to local for development
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/practic";
+mongoose.connect(MONGODB_URI)
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 const plm = require('passport-local-mongoose')
 

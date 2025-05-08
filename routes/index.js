@@ -16,6 +16,14 @@ router.get('/', function (req, res, next) {
   res.render('login');
 });
 
+/* GET login page - explicit route */
+router.get('/login', function (req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/dashboard');
+  }
+  res.render('login');
+});
+
 router.get('/signup', function (req, res, next) {
   if (req.isAuthenticated()) {
     return res.redirect('/dashboard');

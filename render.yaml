@@ -7,3 +7,5 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: MONGODB_URI
+        sync: false # This means you'll need to set it manually in the Render dashboard
