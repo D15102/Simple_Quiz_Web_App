@@ -2,14 +2,9 @@ const mongoose = require("mongoose");
 // Use environment variable for MongoDB connection or fallback to local for development
 const MONGODB_URI = process.env.MONGODB_URI ;
 
-// Make sure the connection string includes the database name
-let connectionString = MONGODB_URI;
-if (connectionString && !connectionString.endsWith('/')) {
-  connectionString += '/';
-}
-if (connectionString && !connectionString.endsWith('QuizDB')) {
-  connectionString += 'QuizDB';
-}
+// Use the connection string directly from environment variables
+// The database name should be included in the .env file
+const connectionString = MONGODB_URI;
 
 console.log('Connecting to MongoDB with URI:', connectionString.replace(/\/\/([^:]+):([^@]+)@/, '//***:***@')); // Log the URI with password hidden
 
