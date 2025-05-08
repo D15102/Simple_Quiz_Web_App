@@ -6,6 +6,7 @@
 var app = require('./app');
 var debug = require('debug')('quiz:server');
 var http = require('http');
+var mongoose = require('mongoose');
 
 /**
  * Get port from environment and store in Express.
@@ -19,11 +20,36 @@ app.set('port', port);
 var server = http.createServer(app);
 
 /**
- * Listen on provided port, on all network interfaces.
+ * Wait for MongoDB connection to be established before starting the server
+ * This ensures that the application doesn't start handling requests before
+ * the database connection is ready.
  */
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+mongoose.connection.once('connected', () => {
+  console.log('MongoDB connection established - starting server');
+
+  /**
+   * Listen on provided port, on all network interfaces.
+   */
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', onListening);
+});
+
+// If the connection throws an error after initial connection
+mongoose.connection.on('error', err => {
+  console.error('MongoDB connection error after initial connection:', err);
+});
+
+// Add a fallback to start the server even if MongoDB connection fails
+// This ensures the application starts even if there are database issues
+setTimeout(() => {
+  if (server.listening === false) {
+    console.warn('MongoDB connection timed out after 30 seconds. Starting server anyway...');
+    server.listen(port);
+    server.on('error', onError);
+    server.on('listening', onListening);
+  }
+}, 30000); // 30 second timeout
 
 /**
  * Normalize a port into a number, string, or false.

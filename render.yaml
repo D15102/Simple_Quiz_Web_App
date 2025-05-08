@@ -9,3 +9,7 @@ services:
         value: production
       - key: MONGODB_URI
         sync: false # This means you'll need to set it manually in the Render dashboard
+    # Add health check to ensure the service is running properly
+    healthCheckPath: /
+    # Increase the initial boot timeout to allow for MongoDB connection
+    initialDeployHook: sleep 10
