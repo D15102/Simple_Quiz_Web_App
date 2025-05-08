@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 // Use environment variable for MongoDB connection or fallback to local for development
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/practic";
+const MONGODB_URI = process.env.MONGODB_URI ;
 
 // Make sure the connection string includes the database name
 let connectionString = MONGODB_URI;
