@@ -3,6 +3,9 @@
  * This file replicates the functionality in bin/www
  */
 
+// Load environment variables from .env file
+require('dotenv').config();
+
 var app = require('./app');
 var debug = require('debug')('quiz:server');
 var http = require('http');

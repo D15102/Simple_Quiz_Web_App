@@ -8,7 +8,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: MONGODB_URI
-        sync: false # This means you'll need to set it manually in the Render dashboard
+        value: mongodb+srv://d15102:Dharmik09@resumeanalyze.dcqthqh.mongodb.net/QuizDB
     # Add health check to ensure the service is running properly
     healthCheckPath: /
     # Increase the initial boot timeout to allow for MongoDB connection
