@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | AptiBoost</title>
+  <link rel="stylesheet" href="../stylesheets/theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../stylesheets/dashboard.css">
+  <link rel="stylesheet" href="../stylesheets/toast.css">
+</head>
+<body>
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Theme Toggle Button -->
+  <div class="theme-toggle" id="theme-toggle">
+    <i id="theme-icon" class="fas fa-moon"></i>
+  </div>
+
+  <!-- Scroll to Top Button -->
+  <div class="scroll-top" id="scroll-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="header-container">
+      <div class="logo">
+        <i class="fas fa-brain"></i>
+        <span class="logo-text">AptiBoost</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#" class="active">Dashboard</a>
+        <a href="#tests">Tests</a>
+        <a href="#">Results</a>
+        <a href="#">Profile</a>
+      </nav>
+      <div class="user-actions">
+        <div class="user-profile-dropdown">
+          <button class="profile-btn">
+            <i class="fas fa-user-circle"></i>
+            <span class="username-display"><%= username %></span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <div class="user-info">
+              <div class="user-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="user-details">
+                <p class="user-name"><%= username %></p>
+                <p class="user-email"><%= email %></p>
+              </div>
+            </div>
+            <!-- <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-user-cog"></i> Profile Settings
+            </a>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-history"></i> Test History
+            </a> -->
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item logout-btn" id="logout-btn">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+          </div>
+        </div>
+        <a href="#tests" class="action-btn">Take a Test</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+      <div class="welcome-header">
+        <div>
+          <h1 class="welcome-title">Welcome, <%= username %> 👋</h1>
+          <p class="welcome-subtitle">Track your progress, take tests, and improve your skills with our comprehensive aptitude assessment platform.</p>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3 class="stat-title">Tests Taken</h3>
+          <p class="stat-value">5</p>
+        </div>
+        <div class="stat-card">
+          <h3 class="stat-title">Completed</h3>
+          <p class="stat-value">18</p>
+        </div>
+        <div class="stat-card">
+          <h3 class="stat-title">Average Score</h3>
+          <p class="stat-value">87%</p>
+        </div>
+        <div class="stat-card">
+          <h3 class="stat-title">Top Category</h3>
+          <p class="stat-text">Logical Reasoning</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Test Categories Section -->
+    <section id="tests" class="test-section">
+      <h2 class="section-title">Available Test Categories</h2>
+      <p class="section-subtitle">
+        Comprehensive assessment tools designed to evaluate different aspects of your cognitive abilities.
+      </p>
+
+      <div class="test-grid">
+        <% const tests = [
+            {
+              icon: 'fa-brain',
+              title: 'Logical Reasoning',
+              time: '20 minutes',
+              description: 'Evaluate your ability to analyze information and solve problems using logic and reasoning.',
+              topics: ['Pattern Recognition', 'Deductive Reasoning', 'Critical Thinking', 'Analytical Reasoning'],
+              href: '/lrquiz'
+            },
+            {
+              icon: 'fa-book-open',
+              title: 'Verbal Reasoning',
+              time: '20 minutes',
+              description: 'Test your comprehension, vocabulary, and ability to understand and analyze written material.',
+              topics: ['Reading Comprehension', 'Vocabulary Usage', 'Grammar & Syntax', 'Verbal Analogies'],
+              href: '/vrquiz'
+            },
+            {
+              icon: 'fa-cube',
+              title: 'Spatial Aptitude',
+              time: '20 minutes',
+              description: 'Assess your ability to mentally manipulate 2D and 3D objects and understand spatial relationships.',
+              topics: ['Mental Rotation', 'Spatial Visualization', 'Pattern Completion', '3D Reasoning'],
+              href: '/spquiz'
+            }
+          ]; %>
+
+        <% tests.forEach(test => { %>
+          <div class="test-card">
+            <div class="test-card-header">
+              <div class="test-icon">
+                <i class="fas <%= test.icon %>"></i>
+              </div>
+              <h3 class="test-title"><%= test.title %></h3>
+            </div>
+            <div class="test-card-body">
+              <p class="test-description"><%= test.description %></p>
+              <ul class="test-topics">
+                <% test.topics.forEach(topic => { %>
+                  <li class="test-topic">
+                    <i class="fas fa-check-circle"></i>
+                    <span><%= topic %></span>
+                  </li>
+                <% }); %>
+              </ul>
+              <div class="test-time">
+                <i class="fas fa-clock"></i>
+                <span><%= test.time %></span>
+              </div>
+              <a href="<%= test.href %>" class="test-btn">Start Test</a>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+      <h2 class="section-title">Why Choose Our Platform</h2>
+      <p class="section-subtitle">
+        We provide the most comprehensive and accurate aptitude testing experience.
+      </p>
+
+      <div class="features-grid">
+        <% const features = [
+            {
+              icon: 'fa-award',
+              title: 'Industry Standard Tests',
+              desc: 'Our tests are designed by experts and follow industry standards to ensure accuracy and relevance.'
+            },
+            {
+              icon: 'fa-chart-bar',
+              title: 'Detailed Analytics',
+              desc: 'Get comprehensive reports and insights about your performance to identify strengths and areas for improvement.'
+            },
+            {
+              icon: 'fa-users',
+              title: 'Personalized Experience',
+              desc: 'Adaptive testing that adjusts to your skill level for a more accurate assessment of your abilities.'
+            }
+          ]; %>
+
+        <% features.forEach(feature => { %>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas <%= feature.icon %>"></i>
+            </div>
+            <h3 class="feature-title"><%= feature.title %></h3>
+            <p class="feature-desc"><%= feature.desc %></p>
+          </div>
+        <% }); %>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="dashboard-footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <i class="fas fa-brain"></i>
+        <span class="footer-logo-text">AptiBoost</span>
+      </div>
+      <p class="footer-copyright">
+        &copy; <%= new Date().getFullYear() %> AptiBoost. All rights reserved.
+      </p>
+      <div class="footer-links">
+        <a href="#" class="footer-link">Terms</a>
+        <a href="#" class="footer-link">Privacy</a>
+        <a href="#" class="footer-link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../javascripts/toast.js"></script>
+  <script src="../javascripts/theme.js"></script>
+
+  <% if(typeof success !== 'undefined' && success.length > 0) { %>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      createToast('<%= success %>', 'success');
+    });
+  </script>
+  <% } %>
+
+  <% if(typeof error !== 'undefined' && error.length > 0) { %>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      createToast('<%= error %>', 'error');
+    });
+  </script>
+  <% } %>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Handle logout button click
+      const logoutBtn = document.getElementById('logout-btn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          // Prevent multiple clicks
+          if (this.classList.contains('disabled')) return;
+
+          // Add disabled class to prevent multiple clicks
+          this.classList.add('disabled');
+
+          // Redirect to logout route
+          window.location.href = '/logout';
+        });
+      }
+
+      // Handle profile dropdown (for mobile)
+      const profileBtn = document.querySelector('.profile-btn');
+      const dropdownContent = document.querySelector('.dropdown-content');
+
+      if (profileBtn && dropdownContent) {
+        // For mobile devices, toggle dropdown on click
+        if (window.innerWidth < 768) {
+          profileBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdownContent.classList.toggle('active');
+          });
+
+          // Close dropdown when clicking outside
+          document.addEventListener('click', function(e) {
+            if (!profileBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+              dropdownContent.classList.remove('active');
+            }
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!-- Flash Messages -->
+<% if(typeof error != 'undefined' && error.length > 0) { %>
+  <div class="alert alert-error">
+    <%= error %>
+  </div>
+<% } %>
+
+<% if(typeof success != 'undefined' && success.length > 0) { %>
+  <div class="alert alert-success">
+    <%= success %>
+  </div>
+<% } %>

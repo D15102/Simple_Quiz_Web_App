@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spatial Aptitude Test | AptiBoost</title>
+    <link rel="stylesheet" href="../stylesheets/theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../stylesheets/quiz-new.css">
+    <link rel="stylesheet" href="../stylesheets/toast.css">
+</head>
+<body>
+    <!-- Toast Container -->
+    <div class="toast-container"></div>
+
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle" id="theme-toggle">
+        <i id="theme-icon" class="fas fa-moon"></i>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Header -->
+    <header class="quiz-header">
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+                <span class="logo-text">AptiBoost</span>
+            </div>
+            <a href="/dashboard" class="back-btn">
+                Back to Dashboard <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </header>
+
+    <div class="quiz-container">
+        <!-- Start Button -->
+        <div class="start-btn">
+            <button>Start Spatial Aptitude Test</button>
+        </div>
+
+        <!-- Info Box -->
+        <div class="info-box">
+            <div class="info-title">Test Rules & Instructions</div>
+            <div class="info-list">
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    You will have <span>60 seconds</span> to answer each question.
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-check-circle"></i>
+                    Once you select your answer, it can't be changed.
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-ban"></i>
+                    You can't select any option once time runs out.
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-exclamation-circle"></i>
+                    You can't exit the test while it's in progress.
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-trophy"></i>
+                    Your score will be based on the number of correct answers.
+                </div>
+            </div>
+            <div class="info-buttons">
+                <button class="info-btn quit-btn">Exit Test</button>
+                <button class="info-btn continue-btn">Continue</button>
+            </div>
+        </div>
+
+        <!-- Quiz Box -->
+        <div class="quiz-box">
+            <header class="quiz-header">
+                <div class="quiz-title">Spatial Aptitude Test</div>
+                <div class="timer">
+                    <i class="fas fa-clock timer-icon"></i>
+                    <div class="timer-text">Time Left:</div>
+                    <div class="timer-count">60</div>
+                </div>
+            </header>
+
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+
+            <div class="progress-indicator" id="progress-indicator">
+                <!-- Progress steps will be added dynamically -->
+            </div>
+
+            <div class="quiz-body">
+                <div class="question">
+                    <!-- Question will be inserted here -->
+                </div>
+                <div class="options">
+                    <!-- Options will be inserted here -->
+                </div>
+            </div>
+
+            <div class="quiz-footer">
+                <div class="question-counter">
+                    <!-- Question counter will be inserted here -->
+                </div>
+                <button class="next-btn">Next Question</button>
+            </div>
+        </div>
+
+        <!-- Result Box -->
+        <div class="result-box">
+            <div class="result-icon">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <div class="complete-text">You've completed the Spatial Aptitude Test!</div>
+            <div class="score-text">
+                <!-- Score will be inserted here -->
+            </div>
+            <div class="result-buttons">
+                <button class="result-btn restart-btn">Retry Test</button>
+                <button class="result-btn quit-result-btn">Back to Dashboard</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../javascripts/toast.js"></script>
+    <script src="../javascripts/theme.js"></script>
+    <script src="../javascripts/spquiz-new.js"></script>
+</body>
+</html>
